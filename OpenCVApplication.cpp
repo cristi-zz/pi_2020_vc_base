@@ -105,9 +105,15 @@ void createSignature()
 	imshow("Signature", img);
 	waitKey(0);
 
+<<<<<<< Updated upstream
 
 }
 
+=======
+}
+
+
+>>>>>>> Stashed changes
 
 int main()
 {
