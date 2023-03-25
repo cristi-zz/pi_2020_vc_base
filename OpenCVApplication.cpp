@@ -64,6 +64,50 @@ void testColor2Gray()
 	}
 }
 
+void createSignature()
+{
+	ifstream file("USERS/USER1/SIGN_FOR_USER1_USER2_2.csv");
+	vector<vector<double>> coordinates;
+
+	// Discard the first row (header)
+	string header;
+	getline(file, header);
+
+	// Read each line and extract the x and y coordinates
+	string line;
+	while (getline(file, line)) {
+		vector<double> row;
+		stringstream ss(line);
+		string value;
+
+		while (getline(ss, value, ',')) {
+			row.push_back(stod(value));
+		}
+
+		coordinates.push_back({ row[0],row[1]});
+	}
+
+	// Create a new image or load an existing one
+	Mat img = Mat::zeros(1000,1500, CV_8UC1);
+
+	// Convert the coordinates into OpenCV format
+	vector<Point> points;
+	for (const auto& row : coordinates) {
+		int x = static_cast<int>(row[0]); 
+		int y = static_cast<int>(row[1]); 
+		points.push_back(Point(x, y));
+
+	}
+	// Draw the signature using polylines
+	polylines(img, points, false, Scalar(255, 255, 255), 2, LINE_AA);
+
+	// Display the image
+	imshow("Signature", img);
+	waitKey(0);
+
+
+}
+
 
 int main()
 {
