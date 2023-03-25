@@ -3,6 +3,9 @@
 
 #include "stdafx.h"
 #include "common.h"
+#include <fstream>
+using namespace std;
+
 
 
 void testOpenImage()
@@ -64,6 +67,8 @@ void testColor2Gray()
 	}
 }
 
+
+
 void createSignature()
 {
 	ifstream file("USERS/USER1/SIGN_FOR_USER1_USER2_2.csv");
@@ -84,17 +89,17 @@ void createSignature()
 			row.push_back(stod(value));
 		}
 
-		coordinates.push_back({ row[0],row[1]});
+		coordinates.push_back({ row[0],row[1] });
 	}
 
 	// Create a new image or load an existing one
-	Mat img = Mat::zeros(1000,1500, CV_8UC1);
+	Mat img = Mat::zeros(1000, 1500, CV_8UC1);
 
 	// Convert the coordinates into OpenCV format
 	vector<Point> points;
 	for (const auto& row : coordinates) {
-		int x = static_cast<int>(row[0]); 
-		int y = static_cast<int>(row[1]); 
+		int x = static_cast<int>(row[0]);
+		int y = static_cast<int>(row[1]);
 		points.push_back(Point(x, y));
 
 	}
@@ -104,17 +109,7 @@ void createSignature()
 	// Display the image
 	imshow("Signature", img);
 	waitKey(0);
-
-<<<<<<< Updated upstream
-
 }
-
-=======
-}
-
-
->>>>>>> Stashed changes
-
 int main()
 {
 	int op;
@@ -139,6 +134,9 @@ int main()
 				break;
 			case 3:
 				testColor2Gray();
+				break;
+			case 4:
+				createSignature();
 				break;
 		}
 	}
