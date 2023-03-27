@@ -90,7 +90,7 @@ void createSignature()
 		coordinates.push_back({ row[0],row[1] }); // in coordonate punem primele 2 valori
 	}
 
-	Mat img = Mat::zeros(1000, 1500, CV_8UC1);
+	Mat img = Mat::zeros(1000, 1500, CV_8UC1); // declarare matrice
 	vector<Point> points; 
 	for (const auto& row : coordinates) {  // se face conversia la vector<Point> pentru a folosi functia polylines
 		int x = static_cast<int>(row[0]);
@@ -100,6 +100,9 @@ void createSignature()
 	}
 	polylines(img, points, false, Scalar(255, 255,255), 2, LINE_AA); //polylines creaza linii intre 2 coordonate
 	imshow("Signature", img);
+
+
+
 	waitKey(0);
 }
 int main()
