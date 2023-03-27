@@ -80,7 +80,7 @@ void createSignature()
 	string line;
 	while (getline(file, line)) {  // pentru fiecare linie declaram un vector unde o sa punem valorile ->row
 		vector<double> row;
-		stringstream ss(line); // se delimiteaza fiecare valoare dupa ","
+		stringstream ss(line); // linia de caractere propriu-zisa, mai usor de lucrat 
 		string value;
 
 		while (getline(ss, value, ',')) {
