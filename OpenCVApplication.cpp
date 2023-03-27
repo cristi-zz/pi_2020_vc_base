@@ -98,7 +98,7 @@ void createSignature()
 		points.push_back(Point(x, y));
 
 	}
-	polylines(img, points, false, Scalar(255, 0,0), 2, LINE_AA);
+	polylines(img, points, false, Scalar(255, 255,255), 2, LINE_AA); //polylines creaza linii intre 2 coordonate
 	imshow("Signature", img);
 	waitKey(0);
 }
