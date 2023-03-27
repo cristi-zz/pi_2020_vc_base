@@ -87,6 +87,7 @@ void createSignature()
 			row.push_back(stod(value)); // fiecare valoare din linie se pune in row
 		}
 
+
 		coordinates.push_back({ row[0],row[1] }); // in coordonate punem primele 2 valori
 	}
 
