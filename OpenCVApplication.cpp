@@ -4,7 +4,14 @@
 #include "stdafx.h"
 #include "common.h"
 #include <fstream>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+
+
 using namespace std;
+
 
 
 
@@ -68,6 +75,12 @@ void testColor2Gray()
 }
 
 
+double euclideanDistance(Point p1, Point p2) {
+	double x_diff = p1.x - p2.x;
+	double y_diff = p1.y - p2.y;
+	return std::sqrt(x_diff * x_diff + y_diff * y_diff);
+}
+
 
 void createSignature()
 {
@@ -101,10 +114,45 @@ void createSignature()
 	}
 	polylines(img, points, false, Scalar(255, 255,255), 2, LINE_AA); //polylines creaza linii intre 2 coordonate
 	imshow("Signature", img);
-
+	imwrite("signature.jpg", img);
 
 
 	waitKey(0);
+}
+void testPreprocessSignature()
+{
+	// Load signature image
+	Mat src = imread("signature.jpg", IMREAD_COLOR);
+	if (src.empty())
+	{
+		cout << "Could not open or find the image!\n";
+		return;
+	}
+	imshow("original image", src);
+
+	// Convert to grayscale
+	Mat gray;
+	cvtColor(src, gray, COLOR_BGR2GRAY);
+	imshow("grayscale image", gray);
+
+	// Resize to a fixed size (e.g., 400 x 200)
+	int width = 400;
+	int height = 200;
+	Mat resized;
+	resize(gray, resized, Size(width, height));
+	imshow("resized image", resized);
+
+	// Apply Gaussian blur
+	Mat blurred;
+	GaussianBlur(resized, blurred, Size(5, 5), 0);
+	imshow("blurred image", blurred);
+
+	// Apply adaptive thresholding
+	Mat thresholded;
+	adaptiveThreshold(blurred, thresholded, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 11, 2);
+	imshow("thresholded image", thresholded);
+
+	waitKey();
 }
 int main()
 {
@@ -134,8 +182,13 @@ int main()
 			case 4:
 				createSignature();
 				break;
+			case 5:
+				testPreprocessSignature();
+				break;
+
 		}
 	}
 	while (op!=0);
+
 	return 0;
 }
