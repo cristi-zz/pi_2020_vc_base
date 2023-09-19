@@ -4,7 +4,7 @@ Proiectul e facut sa "functioneze" cu git.
 
 Pentru a lucra:
 
-1) Cititi tutorialul de git (https://www.visoft.ro/tutoriale-git-baza/ , https://www.visoft.ro/tutoriale-git-practic/ ) si ssh (https://www.visoft.ro/tutorials-ssh/) 
+1) Cititi tutorialul de git (https://visoft.ro/teaching/tutorials/git-baza/ https://visoft.ro/teaching/tutorials/git-practic/ ) si ssh (https://visoft.ro/teaching/tutorials/ghid-ssh/) 
 2) Faceti-va cont pe github daca nu aveti
 3) Va setati ssh-ul sa puteti accesa github-ul
 4) Va puneti pe calculator git-scm
